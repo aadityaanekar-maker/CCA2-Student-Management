@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cca2-student-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cca2-student-management
+  template:
+    metadata:
+      labels:
+        app: cca2-student-management
+    spec:
+      containers:
+        - name: student-management
+          image: IMAGE_PLACEHOLDER
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
